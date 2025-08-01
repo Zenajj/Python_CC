@@ -1,7 +1,14 @@
 import pizza as p
+from printing_models import print_models as pm
+from printing_models import show_completed_models
 
 p.make_pizza(16, 'pepperoni')
 p.make_pizza(12, 'mushrooms', 'mozzarela')
+
+unprinted_designs = ['phone case', 'robot pendant', 'dodecahedron']
+completed_models = []
+pm(unprinted_designs, completed_models)
+show_completed_models(completed_models)
 
 #8-14
 def make_car(manufacturer, model, **kwargs):
