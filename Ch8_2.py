@@ -1,3 +1,8 @@
+import pizza as p
+
+p.make_pizza(16, 'pepperoni')
+p.make_pizza(12, 'mushrooms', 'mozzarela')
+
 #8-14
 def make_car(manufacturer, model, **kwargs):
     """store car info"""
