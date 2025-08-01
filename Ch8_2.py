@@ -1,3 +1,19 @@
+#8-14
+def make_car(manufacturer, model, **kwargs):
+    """store car info"""
+    kwargs["manufacturer"] = manufacturer
+    kwargs["model"] = model
+    return kwargs
+car = make_car('subaru', 'outback', color='blue', tow_package=True)
+print(car)
+for key, value in car.items():
+    print(f"{key}: {value}")
+#8-12
+def sandwich(*items):
+    """print items in a sandwich"""
+    for item in items:
+        print(f"{item}")
+sandwich("cheese","ham", "pickles")
 #8-9
 def show_messages(messages):
     """Show messages."""
