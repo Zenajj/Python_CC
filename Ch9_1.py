@@ -43,6 +43,23 @@ class Restaurant:
         """Increment the number of customers who've been served"""
         self.number_served += served
 
+class IceCreamStand(Restaurant):
+    """
+    Exercise 9-6
+    Class for ice cream stands that adds flavours.
+    """
+
+    def __init__(self, restaurant_name, cuisine_type, *flavours):
+        super().__init__(restaurant_name, cuisine_type)
+        self.flavours = flavours
+    
+    def print_flavours(self):
+        """Display flavours that ice cream stand provides."""
+
+        print(f"\nAvailable flavours at {self.name}:")
+        for flavour in self.flavours:
+            print(f"-{flavour}")
+
 class User:
     """
     Exercise 9-3, 9-5
@@ -74,6 +91,33 @@ class User:
     def reset_login_attempts(self):
         """Resets the value of login_attempts to 0."""
         self.login_attempts = 0
+
+class Privileges:
+    """
+    Exercise 9-8
+    For managing privileges.
+    """
+
+    def __init__(self, *privileges):
+        """Initialize privileges for the admin user."""
+        self.privileges = privileges
+    
+    def show_privileges(self):
+        """Print privileges of an user."""
+        for privilege in self.privileges:
+            print(f"- {privilege}")
+
+class Admin(User):
+    """
+    Exercise 9-7
+    Create Admin class, based on User class.
+    """
+
+    def __init__(self, first_name, last_name, email, password, country, *privileges):
+        """Initialize admin user."""
+        super().__init__(first_name, last_name, email, password, country)
+        self.privileges = Privileges(*privileges)
+
 
 class Car:
     """A simple attempt to represent a car."""
@@ -108,6 +152,51 @@ class Car:
         """Add the given amount to the odometer reading."""
         self.odometer_reading += miles
 
+class Battery:
+    """"A simple attempt to model a battery for an electric car."""
+
+    def __init__(self, battery_size=40):
+        """Initialize the battery's attributes."""
+        self.battery_size = battery_size
+    
+    def describe_battery(self):
+        """Print a statement describing the battery size."""
+        print(f"This car has a {self.battery_size}-kWh battery.")
+
+    def get_range(self):
+        """Print a statement about the range this battery provides."""
+        if self.battery_size == 40:
+            range = 150
+        elif self.battery_size == 65:
+            range = 225
+        
+        print(f"This car can go about {range} miles on a full charge.")
+
+class ElectricCar(Car):
+    """Represent aspects of a car, specific to electric vehicles."""
+
+    def __init__(self, make, model, year):
+        """
+        Initialize attributes of the parent class.
+        Then initialize attributes specific to an electric car."""
+        super().__init__(make, model, year)
+        self.battery = Battery()
+
+
+admin_privileges = Privileges("can't do shit", "can clean toilets")
+important_user = Admin("janez", "kranjski", "janez.kranjski@supasoft.si", "test123", "slovenia", admin_privileges)
+print(admin_privileges.privileges)
+print("--------------------------------------------------")
+important_user.privileges.show_privileges()
+print("--------------------------------------------------")
+
+bosancek = IceCreamStand("bosancek", "slascicarna", "pistacija", "vanilija", "cokolada")
+bosancek.print_flavours()
+
+my_leaf = ElectricCar('nissan', 'leaf', 2024)
+print(my_leaf.get_descriptive_name())
+my_leaf.battery.describe_battery()
+my_leaf.battery.get_range()
 my_new_car = Car('audi', 'a4', 2024)
 print(my_new_car.get_descriptive_name())
 my_new_car.update_odometer(23)
