@@ -171,6 +171,11 @@ class Battery:
             range = 225
         
         print(f"This car can go about {range} miles on a full charge.")
+    
+    def upgrade_battery(self):
+        """Exercise 9-9: Set the battery_size to 65 if it isn't already."""
+        if self.battery_size != 65:
+            self.battery_size = 65
 
 class ElectricCar(Car):
     """Represent aspects of a car, specific to electric vehicles."""
@@ -184,7 +189,7 @@ class ElectricCar(Car):
 
 
 admin_privileges = Privileges("can't do shit", "can clean toilets")
-important_user = Admin("janez", "kranjski", "janez.kranjski@supasoft.si", "test123", "slovenia", admin_privileges)
+important_user = Admin("janez", "kranjski", "janez.kranjski@supasoft.si", "test123", "slovenia", "can't do shit", "can clean toilets")
 print(admin_privileges.privileges)
 print("--------------------------------------------------")
 important_user.privileges.show_privileges()
@@ -197,6 +202,12 @@ my_leaf = ElectricCar('nissan', 'leaf', 2024)
 print(my_leaf.get_descriptive_name())
 my_leaf.battery.describe_battery()
 my_leaf.battery.get_range()
+print("--------------------------------------------------")
+my_leaf.battery.upgrade_battery()
+my_leaf.battery.describe_battery()
+my_leaf.battery.get_range()
+print("--------------------------------------------------")
+
 my_new_car = Car('audi', 'a4', 2024)
 print(my_new_car.get_descriptive_name())
 my_new_car.update_odometer(23)
