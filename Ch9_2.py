@@ -18,8 +18,10 @@ class Die:
 #Exercise 9-14:
 lottery_choices = ("2", "3", "7", "9", "13", "15", "18", "21", "26", "29", "a", "g", "r", "z", "o")
 winning_choices = []
+
 for item in range(4):
     winning_choices.append(choice(lottery_choices))
+    
 print(winning_choices)
 
 
