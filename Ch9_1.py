@@ -118,7 +118,6 @@ class Admin(User):
         super().__init__(first_name, last_name, email, password, country)
         self.privileges = Privileges(*privileges)
 
-
 class Car:
     """A simple attempt to represent a car."""
 
